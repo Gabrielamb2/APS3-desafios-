@@ -16,6 +16,14 @@ void load_string(FILE *file, int *p, char *s, int t) {
     fgets(s, *p + 1, file);
 }
 
+int return_max(int val1, int val2){
+    if (val1 > val2){
+        return val1;
+    }
+
+    return val2;
+}
+
 int mlcs_w(char a[], int n, char b[], int m, int length[MAX_SIZE + 1][MAX_SIZE + 1]) {
     
     //base da recursão
@@ -31,12 +39,8 @@ int mlcs_w(char a[], int n, char b[], int m, int length[MAX_SIZE + 1][MAX_SIZE +
         length[n][m] = mlcs_w(a, n-1, b, m-1, length) + 1;
     }
 
-    else if(mlcs_w(a,n-1,b,m,length) > mlcs_w(a,n,b,m-1,length)){
-        length[n][m] = mlcs_w(a,n-1,b,m,length);
-    }
-
     else{
-        length[n][m] = mlcs_w(a,n,b,m-1,length);
+        length[n][m] = return_max(mlcs_w(a,n-1,b,m,length), mlcs_w(a,n,b,m-1,length));
     }
 
     return length[n][m];
