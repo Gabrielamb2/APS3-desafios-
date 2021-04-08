@@ -28,7 +28,6 @@ int main(void) {
 
         if (result == gold) {
             num_passed++;
-            printf("PASSOU NO TESTE %d\n", t);
         }
         else {
             printf("NÃO PASSOU NO TESTE %d: para %s e %s deveria ser %d mas devolveu %d\n", t, a, b, gold, result);
